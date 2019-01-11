@@ -390,22 +390,22 @@ def class_menu():
                 choice = input("Choose two of the following skills to be trained in Animal Handling, Athletics, Intimidation, Nature, Perception, Survival: ")
                 if choice == "Animal Handling" and "Animal Handling" not in picked:
                     picked.append("Animal Handling")
-                    new_player.skills["Animal Handling"] += 3
+                    new_player.skills["Animal Handling"] += 2
                 elif choice == "Athletics" and "Athletics" not in picked:
                     picked.append("Athletics")
-                    new_player.skills["Athletics"] += 3
+                    new_player.skills["Athletics"] += 2
                 elif choice == "Intimidation" and "Intimidation" not in picked:
                     picked.append("Intimidation")
-                    new_player.skills["Intimidation"] += 3
+                    new_player.skills["Intimidation"] += 2
                 elif choice == "Nature" and "Nature" not in picked:
                     picked.append("Nature")
-                    new_player.skills["Nature"] += 3
+                    new_player.skills["Nature"] += 2
                 elif choice == "Perception" and "Perception" not in picked:
                     picked.append("Perception")
-                    new_player.skills["Perception"] += 3
+                    new_player.skills["Perception"] += 2
                 elif choice == "Survival" and "Survival" not in picked:
                     picked.append("Survival")
-                    new_player.skills["Survival"] += 3
+                    new_player.skills["Survival"] += 2
                 else: print("Invalid option")
             break;
         elif choice == '2':
@@ -421,7 +421,7 @@ def class_menu():
                 choice = input("Choose three skills to be trained in: ")
                 if choice in new_player.skills and choice not in picked:
                     picked.append(choice)
-                    new_player.skills[choice] += 3
+                    new_player.skills[choice] += 2
                 else: print("Invalid option")
             break;
         elif choice == '3':
@@ -436,19 +436,19 @@ def class_menu():
                 choice = input("Choose two of the following skills to be trained in History, Insight, Medicine, Persuasion, or Religion: ")
                 if choice == "History" and "History" not in picked:
                     picked.append("History")
-                    new_player.skills["History"] += 3
+                    new_player.skills["History"] += 2
                 elif choice == "Insight" and "Insight" not in picked:
                     picked.append("Insight")
-                    new_player.skills["Insight"] += 3
+                    new_player.skills["Insight"] += 2
                 elif choice == "Medicine" and "Medicine" not in picked:
                     picked.append("Medicine")
-                    new_player.skills["Medicine"] += 3
+                    new_player.skills["Medicine"] += 2
                 elif choice == "Persuasion" and "Persuasion" not in picked:
                     picked.append("Persuasion")
-                    new_player.skills["Persuasion"] += 3
+                    new_player.skills["Persuasion"] += 2
                 elif choice == "Religion" and "Religion" not in picked:
                     picked.append("Religion")
-                    new_player.skills["Religion"] += 3
+                    new_player.skills["Religion"] += 2
                 else: print("Invalid option")
             break;
         elif choice == '4':
@@ -463,28 +463,28 @@ def class_menu():
                 choice = input("Choose two of the following skills to be trained in Arcana, Animal Handling, Insight, Medicine, Nature, Perception, Religion, or Survival: ")
                 if choice == "Arcana" and "Arcana" not in picked:
                     picked.append("Arcana")
-                    new_player.skills["Arcana"] += 3
+                    new_player.skills["Arcana"] += 2
                 elif choice == "Animal Handling" and "Animal Handling" not in picked:
                     picked.append("Animal Handling")
-                    new_player.skills["Animal Handling"] += 3
+                    new_player.skills["Animal Handling"] += 2
                 elif choice == "Insight" and "Insight" not in picked:
                     picked.append("Insight")
-                    new_player.skills["Insight"] += 3
+                    new_player.skills["Insight"] += 2
                 elif choice == "Medicine" and "Medicine" not in picked:
                     picked.append("Medicine")
-                    new_player.skills["Medicine"] += 3
+                    new_player.skills["Medicine"] += 2
                 elif choice == "Nature" and "Nature" not in picked:
                     picked.append("Nature")
-                    new_player.skills["Nature"] += 3
+                    new_player.skills["Nature"] += 2
                 elif choice == "Perception" and "Perception" not in picked:
                     picked.append("Perception")
-                    new_player.skills["Perception"] += 3
+                    new_player.skills["Perception"] += 2
                 elif choice == "Religion" and "Religion" not in picked:
                     picked.append("Religion")
-                    new_player.skills["Religion"] += 3
+                    new_player.skills["Religion"] += 2
                 elif choice == "Survival" and "Survival" not in picked:
                     picked.append("Survival")
-                    new_player.skills["Survival"] += 3
+                    new_player.skills["Survival"] += 2
                 else: print("Invalid option")
             break;
         elif choice == '5':
@@ -499,28 +499,28 @@ def class_menu():
                 choice = input("Choose two of the following skills to be trained in Acrobatics, Animal Handling, Athletics, History, Insight, Intimidation, Perception, or Survival: ")
                 if choice == "Acrobatics" and "Acrobatics" not in picked:
                     picked.append("Acrobatics")
-                    new_player.skills["Acrobatics"] += 3
+                    new_player.skills["Acrobatics"] += 2
                 elif choice == "Animal Handling" and "Animal Handling" not in picked:
                     picked.append("Animal Handling")
-                    new_player.skills["Animal Handling"] += 3
+                    new_player.skills["Animal Handling"] += 2
                 elif choice == "Insight" and "Insight" not in picked:
                     picked.append("Insight")
-                    new_player.skills["Insight"] += 3
+                    new_player.skills["Insight"] += 2
                 elif choice == "Athletics" and "Athletics" not in picked:
                     picked.append("Athletics")
-                    new_player.skills["Athletics"] += 3
+                    new_player.skills["Athletics"] += 2
                 elif choice == "History" and "History" not in picked:
                     picked.append("History")
-                    new_player.skills["History"] += 3
+                    new_player.skills["History"] += 2
                 elif choice == "Intimidation" and "Intimidation" not in picked:
                     picked.append("Intimidation")
-                    new_player.skills["Intimidation"] += 3
+                    new_player.skills["Intimidation"] += 2
                 elif choice == "Perception" and "Perception" not in picked:
                     picked.append("Perception")
-                    new_player.skills["Perception"] += 3
+                    new_player.skills["Perception"] += 2
                 elif choice == "Survival" and "Survival" not in picked:
                     picked.append("Survival")
-                    new_player.skills["Survival"] += 3
+                    new_player.skills["Survival"] += 2
                 else: print("Invalid option")
             break;
         elif choice == '6':
@@ -535,22 +535,22 @@ def class_menu():
                 choice = input("Choose two of the following skills to be trained in Acrobatics, Athletics, History, Insight, Religion, Stealth: ")
                 if choice == "Acrobatics" and "Acrobatics" not in picked:
                     picked.append("Acrobatics")
-                    new_player.skills["Acrobatics"] += 3
+                    new_player.skills["Acrobatics"] += 2
                 elif choice == "Insight" and "Insight" not in picked:
                     picked.append("Insight")
-                    new_player.skills["Insight"] += 3
+                    new_player.skills["Insight"] += 2
                 elif choice == "Athletics" and "Athletics" not in picked:
                     picked.append("Athletics")
-                    new_player.skills["Athletics"] += 3
+                    new_player.skills["Athletics"] += 2
                 elif choice == "History" and "History" not in picked:
                     picked.append("History")
-                    new_player.skills["History"] += 3
+                    new_player.skills["History"] += 2
                 elif choice == "Religion" and "Religion" not in picked:
                     picked.append("Religion")
-                    new_player.skills["Religion"] += 3
+                    new_player.skills["Religion"] += 2
                 elif choice == "Stealth" and "Stealth" not in picked:
                     picked.append("Stealth")
-                    new_player.skills["Stealth"] += 3
+                    new_player.skills["Stealth"] += 2
                 else: print("Invalid option")
             break;
         elif choice == '7':
@@ -565,22 +565,22 @@ def class_menu():
                 choice = input("Choose two of the following skills to be trained in Athletics, Insight, Intimidation, Medicine, Persuasion, or Religion: ")
                 if choice == "Religion" and "Religion" not in picked:
                     picked.append("Religion")
-                    new_player.skills["Religion"] += 3
+                    new_player.skills["Religion"] += 2
                 elif choice == "Persuasion" and "Persuasion" not in picked:
                     picked.append("Persuasion")
-                    new_player.skills["Persuasion"] += 3
+                    new_player.skills["Persuasion"] += 2
                 elif choice == "Insight" and "Insight" not in picked:
                     picked.append("Insight")
-                    new_player.skills["Insight"] += 3
+                    new_player.skills["Insight"] += 2
                 elif choice == "Athletics" and "Athletics" not in picked:
                     picked.append("Athletics")
-                    new_player.skills["Athletics"] += 3
+                    new_player.skills["Athletics"] += 2
                 elif choice == "Medicine" and "Medicine" not in picked:
                     picked.append("Medicine")
-                    new_player.skills["Medicine"] += 3
+                    new_player.skills["Medicine"] += 2
                 elif choice == "Intimidation" and "Intimidation" not in picked:
                     picked.append("Intimidation")
-                    new_player.skills["Intimidation"] += 3
+                    new_player.skills["Intimidation"] += 2
                 else: print("Invalid option")
             break;
         elif choice == '8':
@@ -595,28 +595,28 @@ def class_menu():
                 choice = input("Choose three of the following skills to be trained in Animal Handling, Athletics, Insight, Investigation, Nature, Perception, Stealth, or Survival: ")
                 if choice == "Animal Handling" and "Animal Handling" not in picked:
                     picked.append("Animal Handling")
-                    new_player.skills["Animal Handling"] += 3
+                    new_player.skills["Animal Handling"] += 2
                 elif choice == "Insight" and "Insight" not in picked:
                     picked.append("Insight")
-                    new_player.skills["Insight"] += 3
+                    new_player.skills["Insight"] += 2
                 elif choice == "Investigation" and "Investigation" not in picked:
                     picked.append("Investigation")
-                    new_player.skills["Investigation"] += 3
+                    new_player.skills["Investigation"] += 2
                 elif choice == "Athletics" and "Athletics" not in picked:
                     picked.append("Athletics")
-                    new_player.skills["Athletics"] += 3
+                    new_player.skills["Athletics"] += 2
                 elif choice == "Nature" and "Nature" not in picked:
                     picked.append("Nature")
-                    new_player.skills["Nature"] += 3
+                    new_player.skills["Nature"] += 2
                 elif choice == "Stealth" and "Stealth" not in picked:
                     picked.append("Stealth")
-                    new_player.skills["Stealth"] += 3
+                    new_player.skills["Stealth"] += 2
                 elif choice == "Perception" and "Perception" not in picked:
                     picked.append("Perception")
-                    new_player.skills["Perception"] += 3
+                    new_player.skills["Perception"] += 2
                 elif choice == "Survival" and "Survival" not in picked:
                     picked.append("Survival")
-                    new_player.skills["Survival"] += 3
+                    new_player.skills["Survival"] += 2
                 else: print("Invalid option")
             break;
         elif choice == '9':
@@ -631,37 +631,37 @@ def class_menu():
                 choice = input("Choose four of the following skills to be trained in Acrobatics, Athletics, Deception, Insight, Intimidation, Investigation, Perception, Performance, Persuasion, Sleight of Hand, or Stealth: ")
                 if choice == "Acrobatics" and "Acrobatics" not in picked:
                     picked.append("Acrobatics")
-                    new_player.skills["Acrobatics"] += 3
+                    new_player.skills["Acrobatics"] += 2
                 elif choice == "Athletics" and "Athletics" not in picked:
                     picked.append("Athletics")
-                    new_player.skills["Athletics"] += 3
+                    new_player.skills["Athletics"] += 2
                 elif choice == "Deception" and "Deception" not in picked:
                     picked.append("Deception")
-                    new_player.skills["Deception"] += 3
+                    new_player.skills["Deception"] += 2
                 elif choice == "Insight" and "Insight" not in picked:
                     picked.append("Insight")
-                    new_player.skills["Insight"] += 3
+                    new_player.skills["Insight"] += 2
                 elif choice == "Intimidation" and "Intimidation" not in picked:
                     picked.append("Intimidation")
-                    new_player.skills["Intimidation"] += 3
+                    new_player.skills["Intimidation"] += 2
                 elif choice == "Investigation" and "Investigation" not in picked:
                     picked.append("Investigation")
-                    new_player.skills["Investigation"] += 3
+                    new_player.skills["Investigation"] += 2
                 elif choice == "Stealth" and "Stealth" not in picked:
                     picked.append("Stealth")
-                    new_player.skills["Stealth"] += 3
+                    new_player.skills["Stealth"] += 2
                 elif choice == "Performance" and "Performance" not in picked:
                     picked.append("Performance")
-                    new_player.skills["Performance"] += 3
+                    new_player.skills["Performance"] += 2
                 elif choice == "Sleight of Hand" and "Sleight of Hand" not in picked:
                     picked.append("Sleight of Hand")
-                    new_player.skills["Sleight of Hand"] += 3
+                    new_player.skills["Sleight of Hand"] += 2
                 elif choice == "Perception" and "Perception" not in picked:
                     picked.append("Perception")
-                    new_player.skills["Perception"] += 3
+                    new_player.skills["Perception"] += 2
                 elif choice == "Survival" and "Survival" not in picked:
                     picked.append("Survival")
-                    new_player.skills["Survival"] += 3
+                    new_player.skills["Survival"] += 2
                 else: print("Invalid option")
             break;
         elif choice == '10':
@@ -676,22 +676,22 @@ def class_menu():
                 choice = input("Choose two of the following skills to be trained in Arcana, Deception, Insight, Intimidation, Persuasion, or Religion: ")
                 if choice == "Arcana" and "Arcana" not in picked:
                     picked.append("Arcana")
-                    new_player.skills["Arcana"] += 3
+                    new_player.skills["Arcana"] += 2
                 elif choice == "Deception" and "Deception" not in picked:
                     picked.append("Deception")
-                    new_player.skills["Deception"] += 3
+                    new_player.skills["Deception"] += 2
                 elif choice == "Insight" and "Insight" not in picked:
                     picked.append("Insight")
-                    new_player.skills["Insight"] += 3
+                    new_player.skills["Insight"] += 2
                 elif choice == "Intimidation" and "Intimidation" not in picked:
                     picked.append("Intimidation")
-                    new_player.skills["Intimidation"] += 3
+                    new_player.skills["Intimidation"] += 2
                 elif choice == "Persuasion" and "Persuasion" not in picked:
                     picke.append("Persuasion")
-                    new_player.skills["Persuasion"] += 3
+                    new_player.skills["Persuasion"] += 2
                 elif choice == "Religion" and "Religion" not in picked:
                     picked.append("Religion")
-                    new_player.skills["Religion"] += 3
+                    new_player.skills["Religion"] += 2
                 else: print("Invalid option")
             break;
         elif choice == '11':
@@ -706,25 +706,25 @@ def class_menu():
                 choice = input("Choose two of the following skills to be trained in Arcana, Deception, History, Intimidation, Investigation, Nature, or Religion: ")
                 if choice == "Arcana" and "Arcana" not in picked:
                     picked.append("Arcana")
-                    new_player.skills["Arcana"] += 3
+                    new_player.skills["Arcana"] += 2
                 elif choice == "Deception" and "Deception" not in picked:
                     picked.append("Deception")
-                    new_player.skills["Deception"] += 3
+                    new_player.skills["Deception"] += 2
                 elif choice == "History" and "History" not in picked:
                     picked.append("History")
-                    new_player.skills["History"] += 3
+                    new_player.skills["History"] += 2
                 elif choice == "Intimidation" and "Intimidation" not in picked:
                     picked.append("Intimidation")
-                    new_player.skills["Intimidation"] += 3
+                    new_player.skills["Intimidation"] += 2
                 elif choice == "Investigation" and "Investigation" not in picked:
                     picked.append("Investigation")
-                    new_player.skills["Investigation"] += 3
+                    new_player.skills["Investigation"] += 2
                 elif choice == "Nature" and "Nature" not in picked:
                     picked.append("Nature")
-                    new_player.skills["Nature"] += 3
+                    new_player.skills["Nature"] += 2
                 elif choice == "Religion" and "Religion" not in picked:
                     picked.append("Religion")
-                    new_player.skills["Religion"] += 3
+                    new_player.skills["Religion"] += 2
                 else: print("Invalid option")
             break;
         elif choice == '12':
@@ -739,22 +739,22 @@ def class_menu():
                 choice = input("Choose two of the following skills to be trained in Arcana, History, Insight, Investigation, Medicine, or Religion: ")
                 if choice == "Arcana" and "Arcana" not in picked:
                     picked.append("Arcana")
-                    new_player.skills["Arcana"] += 3
+                    new_player.skills["Arcana"] += 2
                 elif choice == "Insight" and "Insight" not in picked:
                     picked.append("Insight")
-                    new_player.skills["Insight"] += 3
+                    new_player.skills["Insight"] += 2
                 elif choice == "History" and "History" not in picked:
                     picked.append("History")
-                    new_player.skills["History"] += 3
+                    new_player.skills["History"] += 2
                 elif choice == "Medicine" and "Medicine" not in picked:
                     picked.append("Medicine")
-                    new_player.skills["Medicine"] += 3
+                    new_player.skills["Medicine"] += 2
                 elif choice == "Investigation" and "Investigation" not in picked:
                     picked.append("Investigation")
-                    new_player.skills["Investigation"] += 3
+                    new_player.skills["Investigation"] += 2
                 elif choice == "Religion" and "Religion" not in picked:
                     picked.append("Religion")
-                    new_player.skills["Religion"] += 3
+                    new_player.skills["Religion"] += 2
                 else: print("Invalid option")
             break;
         else: print("Invalid option")
