@@ -182,6 +182,7 @@ def race_menu():
             new_player.lang += ["Dwarvish","Common"]
             new_player.traits += ["Dwarven Resilience","Dwarven Combat Training","Tool Proficiency","Stonecunning"]
             new_player.rec_alignment += "Lawful Good"
+            new_player.size = "Medium"
             prof = ["Battleaxe", "Handaxe", "Throwing Hammer", "Warhammer"]
             add_distinct(prof)
             while True:
@@ -208,6 +209,7 @@ def race_menu():
             new_player.traits += ["Darkvision","Keen Senses","Fey Ancestry","Trance"]
             new_player.rec_alignment += "Chaotic Good"
             new_player.skills["Perception"] += 2
+            new_player.size = "Medium"
             while True:
                 choice = input("Would you like to be (H)igh Elf //Intelligence +1//, a (W)ood Elf //Wisdom +1//, or a (D)ark Elf //Charisma +1//: ").upper()
                 if choice == 'H':
@@ -249,6 +251,7 @@ def race_menu():
             new_player.lang += ["Common", "Halfling"]
             new_player.traits += ["Lucky","Brave","Halfling Nimbleness"]
             new_player.rec_alignment = "Lawful Good"
+            new_player.size = "Small"
             while True:
                 choice = input("Would you like to be a (L)ightfoot Halfling //Charisma +1// or a (S)tout Halfling //Constitution +1//: ").upper()
                 if choice == 'L':
@@ -274,6 +277,7 @@ def race_menu():
             new_player.cha += 1
             language = new_lang()
             new_player.lang += ["Common",language]
+            new_player.size = "Medium"
             break;
         elif choice == '5':
             new_player.speed = 30
@@ -282,10 +286,12 @@ def race_menu():
             new_player.cha += 1
             new_player.traits += ["Draconic Ancestry","Breath Weapon","Damage Resistance"]
             new_player.lang += ["Common","Draconic"]
+            new_player.size = "Medium"
             break;
         elif choice == '6':
             new_player.speed = 25
             new_player.int += 2
+            new_player.size = "Small"
             while True:
                 new_player.rec_alignment = "Good"
                 new_player.traits += ["Darkvision","Gnome Cunning"]
@@ -312,7 +318,7 @@ def race_menu():
             new_player.rec_alignment = "Chaotic"
             new_player.lang += ["Common", "Elvish"]
             language = new_lang()
-            print(language)
+            new_player.size = "Medium"
             while True:
                 if language in new_player.lang:
                     print("Your character already knows that language, please choose another")
@@ -347,6 +353,7 @@ def race_menu():
             new_player.rec_alignment = "Chaotic Evil"
             new_player.traits += ["Darkvision","Menacing","Relentless Endurance","Savage Attacks"]
             new_player.lang += ["Common","Orc"]
+            new_player.size = "Medium"
             break;
         elif choice == '9':
             new_player.speed = 30
@@ -356,6 +363,7 @@ def race_menu():
             new_player.rec_alignment = "Chaotic"
             new_player.traits += ["Darkvision","Hellish Resistance","Infernal Legacy"]
             new_player.lang += ["Common","Infernal"]
+            new_player.size = "Medium"
             break;
         else: print("Invalid option")
 
