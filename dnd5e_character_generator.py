@@ -1,5 +1,3 @@
-#TODO skill versatility, proficeincy flag, custom cap, and size
-
 from random import randint
 
 class Player:
@@ -24,12 +22,13 @@ class Player:
         self.prof_bonus = None
         self.race = None
         self.save = None
-        self.prof = []
+        self.weapon_prof = []
+        self.skill_prof = []
         self.skills = {"Acrobatics":0, "Animal Handling":0, "Arcana":0, "Athletics":0, "Deception":0, "History":0, "Insight":0, "Intimidation":0, "Investigation":0, "Medicine":0, "Nature":0, "Perception":0, "Performance":0, "Persuasion":0, "Religion":0, "Sleight of Hand":0, "Stealth":0, "Survival":0}
         self.rec_alignment = []
         self.traits = []
         self.lang = []
-        self.size = "Medium"
+        self.size = None
 
 def best_of_4d6():
     rolls = [randint(1,6), randint(1,6), randint(1,6), randint(1,6)]
@@ -62,27 +61,27 @@ def custom_abil():
     new_player.cha = int(input("What is your charisma: "))
 
 def abil_input(abil):
-    picked = []
-    while(len(picked) < 6):
-        choice = input("Will " + str(abil[len(picked)]) + " be your (S)trength, (D)exterity, (C)onstitution, (I)ntelligence, (W)isdom, or (Ch)arisma: ").upper()
-        if choice == 'S' and choice not in picked: 
-            new_player.str = abil[len(picked)]
-            picked.append('S')
-        elif choice == 'D' and choice not in picked:     
-            new_player.dex = abil[len(picked)]
-            picked.append('D')
-        elif choice == 'C' and choice not in picked: 
-            new_player.con = abil[len(picked)]
-            picked.append('C')
-        elif choice == 'I' and choice not in picked: 
-            new_player.int = abil[len(picked)]
-            picked.append('I')
-        elif choice == 'W' and choice not in picked: 
-            new_player.wis = abil[len(picked)]
-            picked.append('W')
-        elif choice == 'CH' and choice not in picked: 
-            new_player.cha = abil[len(picked)]
-            picked.append('CH')
+    new_player.skill_prof = []
+    while(len(new_player.skill_prof) < 6):
+        choice = input("Will " + str(abil[len(new_player.skill_prof)]) + " be your (S)trength, (D)exterity, (C)onstitution, (I)ntelligence, (W)isdom, or (Ch)arisma: ").upper()
+        if choice == 'S' and choice not in new_player.skill_prof: 
+            new_player.str = abil[len(new_player.skill_prof)]
+            new_player.skill_prof.append('S')
+        elif choice == 'D' and choice not in new_player.skill_prof:     
+            new_player.dex = abil[len(new_player.skill_prof)]
+            new_player.skill_prof.append('D')
+        elif choice == 'C' and choice not in new_player.skill_prof: 
+            new_player.con = abil[len(new_player.skill_prof)]
+            new_player.skill_prof.append('C')
+        elif choice == 'I' and choice not in new_player.skill_prof: 
+            new_player.int = abil[len(new_player.skill_prof)]
+            new_player.skill_prof.append('I')
+        elif choice == 'W' and choice not in new_player.skill_prof: 
+            new_player.wis = abil[len(new_player.skill_prof)]
+            new_player.skill_prof.append('W')
+        elif choice == 'CH' and choice not in new_player.skill_prof: 
+            new_player.cha = abil[len(new_player.skill_prof)]
+            new_player.skill_prof.append('CH')
         else: print("Invalid option")
 
 def abil_menu():
@@ -105,8 +104,8 @@ def abil_menu():
 
 def add_distinct(lst):
     for word in lst:
-        if word not in new_player.prof:
-            new_player.prof.append(word)
+        if word not in new_player.weapon_prof:
+            new_player.weapon_prof.append(word)
 
 def new_lang():
     while True:
@@ -183,8 +182,8 @@ def race_menu():
             new_player.traits += ["Dwarven Resilience","Dwarven Combat Training","Tool Proficiency","Stonecunning"]
             new_player.rec_alignment += "Lawful Good"
             new_player.size = "Medium"
-            prof = ["Battleaxe", "Handaxe", "Throwing Hammer", "Warhammer"]
-            add_distinct(prof)
+            weapon_prof = ["Battleaxe", "Handaxe", "Throwing Hammer", "Warhammer"]
+            add_distinct(weapon_prof)
             while True:
                 choice = input("Would you like to be a (H)ill Dwarf //Wisdom +1 and Hit Points +1// or a (M)ountain Dwarf //Strength +2//: ").upper()
                 if choice == 'H':
@@ -196,8 +195,8 @@ def race_menu():
                 elif choice == 'M':
                     new_player.race = "Dwarf (Mountain Dwarf)"
                     new_player.str += 2
-                    prof = ["Light Armor", "Medium Armor"]
-                    add_distinct(prof)
+                    weapon_prof = ["Light Armor", "Medium Armor"]
+                    add_distinct(weapon_prof)
                     new_player.traits += "Dwarven Armor Training"
                     break;
                 else: print("Invalid option")
@@ -215,8 +214,8 @@ def race_menu():
                 if choice == 'H':
                     new_player.race = "Elf (High Elf)"
                     new_player.int += 1
-                    prof = ["Longsword", "Shortsword", "Shortbow", "Longbow"]
-                    add_distinct(prof)
+                    weapon_prof = ["Longsword", "Shortsword", "Shortbow", "Longbow"]
+                    add_distinct(weapon_prof)
                     new_player.traits += ["Elf Weapon Training","Cantrip","Extra Language"]
                     language = new_lang()
                     while True:
@@ -231,16 +230,16 @@ def race_menu():
                     new_player.race = "Elf (Wood Elf)"
                     new_player.wis += 1
                     new_player.speed = 35
-                    prof = ["Longsword", "Shortsword", "Shortbow", "Longbow"]
-                    add_distinct(prof)
+                    weapon_prof = ["Longsword", "Shortsword", "Shortbow", "Longbow"]
+                    add_distinct(weapon_prof)
                     new_player.traits += ["Elf Weapon Training","Fleet of Foot","Mask of the Wild"]
                     break;
                 elif choice == 'D':
                     new_player.race = "Elf (Dark Elf)"
                     new_player.cha += 1
                     new_player.rec_alignment = "Chaotic Evil"
-                    prof = ["Rapier", "Shortsword", "Hand Crossbow"]
-                    add_distinct(prof)
+                    weapon_prof = ["Rapier", "Shortsword", "Hand Crossbow"]
+                    add_distinct(weapon_prof)
                     new_player.traits += ["Superior Darkvision","Sunlight Sensitivity","Drow Magic","Drow Weapon Training"]
                     break;
                 else: print("Invalid option")
@@ -368,6 +367,21 @@ def race_menu():
         else: print("Invalid option")
 
 def class_menu():
+    new_player.skill_prof = []
+
+    if new_player.race == "Half-Elf":
+        while(True):
+            print(new_player.skills)
+            choice = input("Choose a skill for Half-Elf skill versatility: ")
+            if choice in new_player.skills:
+                new_player.skill_prof.append(choice)
+                new_player.skills[choice] += 2
+                break
+            else: print("Invalid option")
+    elif new_player.race == "Elf":
+        new_player.skill_prof.append("Perception")
+        new_player.skills["Perception"] += 2
+
     print("")
     print("Classes: ")
     print("1) Barbarian (pg 46) A fierce warrior of primitive background who can enter a battle rage")
@@ -382,388 +396,455 @@ def class_menu():
     print("10) Sorcerer (pg 99) A spellcaster who draws on inherent magic from a gift or bloodline")
     print("11) Warlock (pg 105) A wielder of magic that is derived from a bargain with an extraplanar entity")
     print("12) Wizard (pg 112) A scholarly magic-user capable of manipulating the structure of reality")
-    
+
     while True:
+        prof = 0
         choice = input("Choose from the above classes: ")
         print("Type the full name of a single skill as it appears, then hit [ENTER] before typing the next selection.")
         if choice == '1':
             new_player.className = "Barbarian"
             new_player.hp += randint(1,12) + new_player.con_mod
-            prof = ["Light Armor", "Medium Armor", "Shield", "Simple Weapons", "Martial Weapons"]
-            add_distinct(prof)
+            weapon_prof = ["Light Armor", "Medium Armor", "Shield", "Simple Weapons", "Martial Weapons"]
+            add_distinct(weapon_prof)
             new_player.prof_bonus = 2
             new_player.save = "Dexterity, Charisma"
-            picked = []
-            while len(picked) < 2:
+            while prof < 2:
                 choice = input("Choose two of the following skills to be trained in Animal Handling, Athletics, Intimidation, Nature, Perception, Survival: ")
-                if choice == "Animal Handling" and "Animal Handling" not in picked:
-                    picked.append("Animal Handling")
+                if choice == "Animal Handling" and "Animal Handling" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Animal Handling")
                     new_player.skills["Animal Handling"] += 2
-                elif choice == "Athletics" and "Athletics" not in picked:
-                    picked.append("Athletics")
+                    prof += 1
+                elif choice == "Athletics" and "Athletics" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Athletics")
                     new_player.skills["Athletics"] += 2
-                elif choice == "Intimidation" and "Intimidation" not in picked:
-                    picked.append("Intimidation")
+                    prof += 1
+                elif choice == "Intimidation" and "Intimidation" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Intimidation")
                     new_player.skills["Intimidation"] += 2
-                elif choice == "Nature" and "Nature" not in picked:
-                    picked.append("Nature")
+                    prof += 1
+                elif choice == "Nature" and "Nature" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Nature")
                     new_player.skills["Nature"] += 2
-                elif choice == "Perception" and "Perception" not in picked:
-                    picked.append("Perception")
+                    prof += 1
+                elif choice == "Perception" and "Perception" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Perception")
                     new_player.skills["Perception"] += 2
-                elif choice == "Survival" and "Survival" not in picked:
-                    picked.append("Survival")
+                    prof += 1
+                elif choice == "Survival" and "Survival" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Survival")
                     new_player.skills["Survival"] += 2
-                else: print("Invalid option")
+                    prof += 1
+                else: print("Invalid option or alreay proficient")
             break;
         elif choice == '2':
             new_player.className = "Bard"
             new_player.hp += randint(1,8) + new_player.con_mod
-            prof = ["Light Armor", "Simple Weapons", "Hand Crossbow", "Longsword", "Rapier", "Shortsword"]
-            add_distinct(prof)
+            weapon_prof = ["Light Armor", "Simple Weapons", "Hand Crossbow", "Longsword", "Rapier", "Shortsword"]
+            add_distinct(weapon_prof)
             new_player.prof_bonus = 2
             new_player.save = "Dexterity, Charisma"
-            picked = []
-            while len(picked) < 3:
+            while prof < 3:
                 print(new_player.skills)
                 choice = input("Choose three skills to be trained in: ")
-                if choice in new_player.skills and choice not in picked:
-                    picked.append(choice)
+                if choice in new_player.skills and choice not in new_player.skill_prof:
+                    new_player.skill_prof.append(choice)
                     new_player.skills[choice] += 2
-                else: print("Invalid option")
+                    prof += 1
+                else: print("Invalid option or alreay proficient")
             break;
         elif choice == '3':
             new_player.className = "Cleric"
             new_player.hp += randint(1,8) + new_player.con_mod
-            prof = ["Light Armor", "Medium Armor", "Shield", "All Simple Weapons"]
-            add_distinct(prof)
+            weapon_prof = ["Light Armor", "Medium Armor", "Shield", "All Simple Weapons"]
+            add_distinct(weapon_prof)
             new_player.prof_bonus = 2
             new_player.save = "Wisdom, Charisma"
-            picked = []
-            while len(picked) < 2:
+            while prof < 2:
                 choice = input("Choose two of the following skills to be trained in History, Insight, Medicine, Persuasion, or Religion: ")
-                if choice == "History" and "History" not in picked:
-                    picked.append("History")
+                if choice == "History" and "History" not in new_player.skill_prof:
+                    new_player.skill_prof.append("History")
                     new_player.skills["History"] += 2
-                elif choice == "Insight" and "Insight" not in picked:
-                    picked.append("Insight")
+                    prof += 1
+                elif choice == "Insight" and "Insight" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Insight")
                     new_player.skills["Insight"] += 2
-                elif choice == "Medicine" and "Medicine" not in picked:
-                    picked.append("Medicine")
+                    prof += 1
+                elif choice == "Medicine" and "Medicine" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Medicine")
                     new_player.skills["Medicine"] += 2
-                elif choice == "Persuasion" and "Persuasion" not in picked:
-                    picked.append("Persuasion")
+                    prof += 1
+                elif choice == "Persuasion" and "Persuasion" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Persuasion")
                     new_player.skills["Persuasion"] += 2
-                elif choice == "Religion" and "Religion" not in picked:
-                    picked.append("Religion")
+                    prof += 1
+                elif choice == "Religion" and "Religion" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Religion")
                     new_player.skills["Religion"] += 2
-                else: print("Invalid option")
+                    prof += 1
+                else: print("Invalid option or alreay proficient")
             break;
         elif choice == '4':
             new_player.className = "Druid"
             new_player.hp += randint(1,8) + new_player.con_mod
-            prof = ["Light Armor (Non-metal)", "Medium Armor (Non-metal)", "Shield (Non-metal)", "Club", "Dagger", "Dart", "Javelin", "Mace", "Quarterstaff", "Scimtar", "Sickle", "Sling", "Spear"]
-            add_distinct(prof)
+            weapon_prof = ["Light Armor (Non-metal)", "Medium Armor (Non-metal)", "Shield (Non-metal)", "Club", "Dagger", "Dart", "Javelin", "Mace", "Quarterstaff", "Scimtar", "Sickle", "Sling", "Spear"]
+            add_distinct(weapon_prof)
             new_player.prof_bonus = 2
             new_player.save = "Intelligence, Wisdom"
-            picked = []
-            while len(picked) < 2:
+            while prof < 2:
                 choice = input("Choose two of the following skills to be trained in Arcana, Animal Handling, Insight, Medicine, Nature, Perception, Religion, or Survival: ")
-                if choice == "Arcana" and "Arcana" not in picked:
-                    picked.append("Arcana")
+                if choice == "Arcana" and "Arcana" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Arcana")
                     new_player.skills["Arcana"] += 2
-                elif choice == "Animal Handling" and "Animal Handling" not in picked:
-                    picked.append("Animal Handling")
+                    prof += 1
+                elif choice == "Animal Handling" and "Animal Handling" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Animal Handling")
                     new_player.skills["Animal Handling"] += 2
-                elif choice == "Insight" and "Insight" not in picked:
-                    picked.append("Insight")
+                    prof += 1
+                elif choice == "Insight" and "Insight" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Insight")
                     new_player.skills["Insight"] += 2
-                elif choice == "Medicine" and "Medicine" not in picked:
-                    picked.append("Medicine")
+                    prof += 1
+                elif choice == "Medicine" and "Medicine" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Medicine")
                     new_player.skills["Medicine"] += 2
-                elif choice == "Nature" and "Nature" not in picked:
-                    picked.append("Nature")
+                    prof += 1
+                elif choice == "Nature" and "Nature" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Nature")
                     new_player.skills["Nature"] += 2
-                elif choice == "Perception" and "Perception" not in picked:
-                    picked.append("Perception")
+                    prof += 1
+                elif choice == "Perception" and "Perception" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Perception")
                     new_player.skills["Perception"] += 2
-                elif choice == "Religion" and "Religion" not in picked:
-                    picked.append("Religion")
+                    prof += 1
+                elif choice == "Religion" and "Religion" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Religion")
                     new_player.skills["Religion"] += 2
-                elif choice == "Survival" and "Survival" not in picked:
-                    picked.append("Survival")
+                    prof += 1
+                elif choice == "Survival" and "Survival" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Survival")
                     new_player.skills["Survival"] += 2
-                else: print("Invalid option")
+                    prof += 1
+                else: print("Invalid option or alreay proficient")
             break;
         elif choice == '5':
             new_player.className = "Fighter"
             new_player.hp += randint(1,10) + new_player.con_mod
-            prof = ["All Armor", "All Shields", "Simple Weapons", "Martial Weapons"]
-            add_distinct(prof)
+            weapon_prof = ["All Armor", "All Shields", "Simple Weapons", "Martial Weapons"]
+            add_distinct(weapon_prof)
             new_player.prof_bonus = 2
             new_player.save = "Strength, Constitution"
-            picked = []
-            while len(picked) < 2:
+            while prof < 2:
                 choice = input("Choose two of the following skills to be trained in Acrobatics, Animal Handling, Athletics, History, Insight, Intimidation, Perception, or Survival: ")
-                if choice == "Acrobatics" and "Acrobatics" not in picked:
-                    picked.append("Acrobatics")
+                if choice == "Acrobatics" and "Acrobatics" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Acrobatics")
                     new_player.skills["Acrobatics"] += 2
-                elif choice == "Animal Handling" and "Animal Handling" not in picked:
-                    picked.append("Animal Handling")
+                    prof += 1
+                elif choice == "Animal Handling" and "Animal Handling" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Animal Handling")
                     new_player.skills["Animal Handling"] += 2
-                elif choice == "Insight" and "Insight" not in picked:
-                    picked.append("Insight")
+                    prof += 1
+                elif choice == "Insight" and "Insight" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Insight")
                     new_player.skills["Insight"] += 2
-                elif choice == "Athletics" and "Athletics" not in picked:
-                    picked.append("Athletics")
+                    prof += 1
+                elif choice == "Athletics" and "Athletics" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Athletics")
                     new_player.skills["Athletics"] += 2
-                elif choice == "History" and "History" not in picked:
-                    picked.append("History")
+                    prof += 1
+                elif choice == "History" and "History" not in new_player.skill_prof:
+                    new_player.skill_prof.append("History")
                     new_player.skills["History"] += 2
-                elif choice == "Intimidation" and "Intimidation" not in picked:
-                    picked.append("Intimidation")
+                    prof += 1
+                elif choice == "Intimidation" and "Intimidation" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Intimidation")
                     new_player.skills["Intimidation"] += 2
-                elif choice == "Perception" and "Perception" not in picked:
-                    picked.append("Perception")
+                    prof += 1
+                elif choice == "Perception" and "Perception" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Perception")
                     new_player.skills["Perception"] += 2
-                elif choice == "Survival" and "Survival" not in picked:
-                    picked.append("Survival")
+                    prof += 1
+                elif choice == "Survival" and "Survival" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Survival")
                     new_player.skills["Survival"] += 2
-                else: print("Invalid option")
+                    prof += 1
+                else: print("Invalid option or alreay proficient")
             break;
         elif choice == '6':
             new_player.className = "Monk"
             new_player.hp += randint(1,8) + new_player.con_mod
-            prof = ["Simple Weapons", "Shortsword"]
-            add_distinct(prof)
+            weapon_prof = ["Simple Weapons", "Shortsword"]
+            add_distinct(weapon_prof)
             new_player.prof_bonus = 2
             new_player.save = "Strength, Dexterity"
-            picked = []
-            while len(picked) < 2:
+            while prof < 2:
                 choice = input("Choose two of the following skills to be trained in Acrobatics, Athletics, History, Insight, Religion, Stealth: ")
-                if choice == "Acrobatics" and "Acrobatics" not in picked:
-                    picked.append("Acrobatics")
+                if choice == "Acrobatics" and "Acrobatics" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Acrobatics")
                     new_player.skills["Acrobatics"] += 2
-                elif choice == "Insight" and "Insight" not in picked:
-                    picked.append("Insight")
+                    prof += 1
+                elif choice == "Insight" and "Insight" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Insight")
                     new_player.skills["Insight"] += 2
-                elif choice == "Athletics" and "Athletics" not in picked:
-                    picked.append("Athletics")
+                    prof += 1
+                elif choice == "Athletics" and "Athletics" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Athletics")
                     new_player.skills["Athletics"] += 2
-                elif choice == "History" and "History" not in picked:
-                    picked.append("History")
+                    prof += 1
+                elif choice == "History" and "History" not in new_player.skill_prof:
+                    new_player.skill_prof.append("History")
                     new_player.skills["History"] += 2
-                elif choice == "Religion" and "Religion" not in picked:
-                    picked.append("Religion")
+                    prof += 1
+                elif choice == "Religion" and "Religion" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Religion")
                     new_player.skills["Religion"] += 2
-                elif choice == "Stealth" and "Stealth" not in picked:
-                    picked.append("Stealth")
+                    prof += 1
+                elif choice == "Stealth" and "Stealth" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Stealth")
                     new_player.skills["Stealth"] += 2
-                else: print("Invalid option")
+                    prof += 1
+                else: print("Invalid option or alreay proficient")
             break;
         elif choice == '7':
             new_player.className = "Paladin"
             new_player.hp += randint(1,10) + new_player.con_mod
-            prof = ["All Armor", "All Shields", "Simple Weapons", "Martial Weapons"]
-            add_distinct(prof)
+            weapon_prof = ["All Armor", "All Shields", "Simple Weapons", "Martial Weapons"]
+            add_distinct(weapon_prof)
             new_player.prof_bonus = 2
             new_player.save = "Wisdom, Charisma"
-            picked = []
-            while len(picked) < 2:
+            while prof < 2:
                 choice = input("Choose two of the following skills to be trained in Athletics, Insight, Intimidation, Medicine, Persuasion, or Religion: ")
-                if choice == "Religion" and "Religion" not in picked:
-                    picked.append("Religion")
+                if choice == "Religion" and "Religion" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Religion")
                     new_player.skills["Religion"] += 2
-                elif choice == "Persuasion" and "Persuasion" not in picked:
-                    picked.append("Persuasion")
+                    prof += 1
+                elif choice == "Persuasion" and "Persuasion" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Persuasion")
                     new_player.skills["Persuasion"] += 2
-                elif choice == "Insight" and "Insight" not in picked:
-                    picked.append("Insight")
+                    prof += 1
+                elif choice == "Insight" and "Insight" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Insight")
                     new_player.skills["Insight"] += 2
-                elif choice == "Athletics" and "Athletics" not in picked:
-                    picked.append("Athletics")
+                    prof += 1
+                elif choice == "Athletics" and "Athletics" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Athletics")
                     new_player.skills["Athletics"] += 2
-                elif choice == "Medicine" and "Medicine" not in picked:
-                    picked.append("Medicine")
+                    prof += 1
+                elif choice == "Medicine" and "Medicine" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Medicine")
                     new_player.skills["Medicine"] += 2
-                elif choice == "Intimidation" and "Intimidation" not in picked:
-                    picked.append("Intimidation")
+                    prof += 1
+                elif choice == "Intimidation" and "Intimidation" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Intimidation")
                     new_player.skills["Intimidation"] += 2
-                else: print("Invalid option")
+                    prof += 1
+                else: print("Invalid option or alreay proficient")
             break;
         elif choice == '8':
             new_player.className = "Ranger"
             new_player.hp += randint(1,10) + new_player.con_mod
-            prof = ["Light Armor", "Medium Armor", "Shield", "Simple Weapons", "Martial Weapons"]
-            add_distinct(prof)
+            weapon_prof = ["Light Armor", "Medium Armor", "Shield", "Simple Weapons", "Martial Weapons"]
+            add_distinct(weapon_prof)
             new_player.prof_bonus = 2
             new_player.save = "Strength, Dexterity"
-            picked = []
-            while len(picked) < 3:
+            while prof < 3:
                 choice = input("Choose three of the following skills to be trained in Animal Handling, Athletics, Insight, Investigation, Nature, Perception, Stealth, or Survival: ")
-                if choice == "Animal Handling" and "Animal Handling" not in picked:
-                    picked.append("Animal Handling")
+                if choice == "Animal Handling" and "Animal Handling" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Animal Handling")
                     new_player.skills["Animal Handling"] += 2
-                elif choice == "Insight" and "Insight" not in picked:
-                    picked.append("Insight")
+                    prof += 1
+                elif choice == "Insight" and "Insight" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Insight")
                     new_player.skills["Insight"] += 2
-                elif choice == "Investigation" and "Investigation" not in picked:
-                    picked.append("Investigation")
+                    prof += 1
+                elif choice == "Investigation" and "Investigation" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Investigation")
                     new_player.skills["Investigation"] += 2
-                elif choice == "Athletics" and "Athletics" not in picked:
-                    picked.append("Athletics")
+                    prof += 1
+                elif choice == "Athletics" and "Athletics" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Athletics")
                     new_player.skills["Athletics"] += 2
-                elif choice == "Nature" and "Nature" not in picked:
-                    picked.append("Nature")
+                    prof += 1
+                elif choice == "Nature" and "Nature" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Nature")
                     new_player.skills["Nature"] += 2
-                elif choice == "Stealth" and "Stealth" not in picked:
-                    picked.append("Stealth")
+                    prof += 1
+                elif choice == "Stealth" and "Stealth" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Stealth")
                     new_player.skills["Stealth"] += 2
-                elif choice == "Perception" and "Perception" not in picked:
-                    picked.append("Perception")
+                    prof += 1
+                elif choice == "Perception" and "Perception" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Perception")
                     new_player.skills["Perception"] += 2
-                elif choice == "Survival" and "Survival" not in picked:
-                    picked.append("Survival")
+                    prof += 1
+                elif choice == "Survival" and "Survival" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Survival")
                     new_player.skills["Survival"] += 2
-                else: print("Invalid option")
+                    prof += 1
+                else: print("Invalid option or alreay proficient")
             break;
         elif choice == '9':
             new_player.className = "Rogue"
             new_player.hp += randint(1,8) + new_player.con_mod
-            prof = ["Light Armor", "Simple Weapons", "Hand Crossbow", "Longsword", "Rapier", "Shortsword"]
-            add_distinct(prof)
+            weapon_prof = ["Light Armor", "Simple Weapons", "Hand Crossbow", "Longsword", "Rapier", "Shortsword"]
+            add_distinct(weapon_prof)
             new_player.prof_bonus = 2
             new_player.save = "Dexterity, Intelligence"
-            picked = []
-            while len(picked) < 4:
+            while prof < 4:
                 choice = input("Choose four of the following skills to be trained in Acrobatics, Athletics, Deception, Insight, Intimidation, Investigation, Perception, Performance, Persuasion, Sleight of Hand, or Stealth: ")
-                if choice == "Acrobatics" and "Acrobatics" not in picked:
-                    picked.append("Acrobatics")
+                if choice == "Acrobatics" and "Acrobatics" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Acrobatics")
                     new_player.skills["Acrobatics"] += 2
-                elif choice == "Athletics" and "Athletics" not in picked:
-                    picked.append("Athletics")
+                    prof += 1
+                elif choice == "Athletics" and "Athletics" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Athletics")
                     new_player.skills["Athletics"] += 2
-                elif choice == "Deception" and "Deception" not in picked:
-                    picked.append("Deception")
+                    prof += 1
+                elif choice == "Deception" and "Deception" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Deception")
                     new_player.skills["Deception"] += 2
-                elif choice == "Insight" and "Insight" not in picked:
-                    picked.append("Insight")
+                    prof += 1
+                elif choice == "Insight" and "Insight" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Insight")
                     new_player.skills["Insight"] += 2
-                elif choice == "Intimidation" and "Intimidation" not in picked:
-                    picked.append("Intimidation")
+                    prof += 1
+                elif choice == "Intimidation" and "Intimidation" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Intimidation")
                     new_player.skills["Intimidation"] += 2
-                elif choice == "Investigation" and "Investigation" not in picked:
-                    picked.append("Investigation")
+                    prof += 1
+                elif choice == "Investigation" and "Investigation" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Investigation")
                     new_player.skills["Investigation"] += 2
-                elif choice == "Stealth" and "Stealth" not in picked:
-                    picked.append("Stealth")
+                    prof += 1
+                elif choice == "Stealth" and "Stealth" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Stealth")
                     new_player.skills["Stealth"] += 2
-                elif choice == "Performance" and "Performance" not in picked:
-                    picked.append("Performance")
+                    prof += 1
+                elif choice == "Performance" and "Performance" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Performance")
                     new_player.skills["Performance"] += 2
-                elif choice == "Sleight of Hand" and "Sleight of Hand" not in picked:
-                    picked.append("Sleight of Hand")
+                    prof += 1
+                elif choice == "Sleight of Hand" and "Sleight of Hand" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Sleight of Hand")
                     new_player.skills["Sleight of Hand"] += 2
-                elif choice == "Perception" and "Perception" not in picked:
-                    picked.append("Perception")
+                    prof += 1
+                elif choice == "Perception" and "Perception" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Perception")
                     new_player.skills["Perception"] += 2
-                elif choice == "Survival" and "Survival" not in picked:
-                    picked.append("Survival")
+                    prof += 1
+                elif choice == "Survival" and "Survival" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Survival")
                     new_player.skills["Survival"] += 2
-                else: print("Invalid option")
+                    prof += 1
+                else: print("Invalid option or alreay proficient")
             break;
         elif choice == '10':
             new_player.className = "Sorcerer"
             new_player.hp += randint(1,6) + new_player.con_mod
-            prof = ["Dagger", "Dart", "Sling", "Quarterstaff", "Light Crossbow"]
-            add_distinct(prof)
+            weapon_prof = ["Dagger", "Dart", "Sling", "Quarterstaff", "Light Crossbow"]
+            add_distinct(weapon_prof)
             new_player.prof_bonus = 2
             new_player.save = "Constitution, Charisma"
-            picked = []
-            while len(picked) < 2:
+            while prof < 2:
                 choice = input("Choose two of the following skills to be trained in Arcana, Deception, Insight, Intimidation, Persuasion, or Religion: ")
-                if choice == "Arcana" and "Arcana" not in picked:
-                    picked.append("Arcana")
+                if choice == "Arcana" and "Arcana" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Arcana")
                     new_player.skills["Arcana"] += 2
-                elif choice == "Deception" and "Deception" not in picked:
-                    picked.append("Deception")
+                    prof += 1
+                elif choice == "Deception" and "Deception" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Deception")
                     new_player.skills["Deception"] += 2
-                elif choice == "Insight" and "Insight" not in picked:
-                    picked.append("Insight")
+                    prof += 1
+                elif choice == "Insight" and "Insight" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Insight")
                     new_player.skills["Insight"] += 2
-                elif choice == "Intimidation" and "Intimidation" not in picked:
-                    picked.append("Intimidation")
+                    prof += 1
+                elif choice == "Intimidation" and "Intimidation" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Intimidation")
                     new_player.skills["Intimidation"] += 2
-                elif choice == "Persuasion" and "Persuasion" not in picked:
+                    prof += 1
+                elif choice == "Persuasion" and "Persuasion" not in new_player.skill_prof:
                     picke.append("Persuasion")
                     new_player.skills["Persuasion"] += 2
-                elif choice == "Religion" and "Religion" not in picked:
-                    picked.append("Religion")
+                    prof += 1
+                elif choice == "Religion" and "Religion" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Religion")
                     new_player.skills["Religion"] += 2
-                else: print("Invalid option")
+                    prof += 1
+                else: print("Invalid option or alreay proficient")
             break;
         elif choice == '11':
             new_player.className = "Warlock"
             new_player.hp += randint(1,8) + new_player.con_mod
-            prof = ["Light Armor", "Simple Weapon"]
-            add_distinct(prof)
+            weapon_prof = ["Light Armor", "Simple Weapon"]
+            add_distinct(weapon_prof)
             new_player.prof_bonus = 2
             new_player.save = "Wisdom, Charisma"
-            picked = []
-            while len(picked) < 2:
+            while prof < 2:
                 choice = input("Choose two of the following skills to be trained in Arcana, Deception, History, Intimidation, Investigation, Nature, or Religion: ")
-                if choice == "Arcana" and "Arcana" not in picked:
-                    picked.append("Arcana")
+                if choice == "Arcana" and "Arcana" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Arcana")
                     new_player.skills["Arcana"] += 2
-                elif choice == "Deception" and "Deception" not in picked:
-                    picked.append("Deception")
+                    prof += 1
+                elif choice == "Deception" and "Deception" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Deception")
                     new_player.skills["Deception"] += 2
-                elif choice == "History" and "History" not in picked:
-                    picked.append("History")
+                    prof += 1
+                elif choice == "History" and "History" not in new_player.skill_prof:
+                    new_player.skill_prof.append("History")
                     new_player.skills["History"] += 2
-                elif choice == "Intimidation" and "Intimidation" not in picked:
-                    picked.append("Intimidation")
+                    prof += 1
+                elif choice == "Intimidation" and "Intimidation" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Intimidation")
                     new_player.skills["Intimidation"] += 2
-                elif choice == "Investigation" and "Investigation" not in picked:
-                    picked.append("Investigation")
+                    prof += 1
+                elif choice == "Investigation" and "Investigation" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Investigation")
                     new_player.skills["Investigation"] += 2
-                elif choice == "Nature" and "Nature" not in picked:
-                    picked.append("Nature")
+                    prof += 1
+                elif choice == "Nature" and "Nature" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Nature")
                     new_player.skills["Nature"] += 2
-                elif choice == "Religion" and "Religion" not in picked:
-                    picked.append("Religion")
+                    prof += 1
+                elif choice == "Religion" and "Religion" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Religion")
                     new_player.skills["Religion"] += 2
-                else: print("Invalid option")
+                    prof += 1
+                else: print("Invalid option or alreay proficient")
             break;
         elif choice == '12':
             new_player.className = "Wizard"
             new_player.hp += randint(1,6) + new_player.con_mod
-            prof = ["Dagger", "Dart", "Sling", "Quarterstaff", "Light Crossbow"]
-            add_distinct(prof)
+            weapon_prof = ["Dagger", "Dart", "Sling", "Quarterstaff", "Light Crossbow"]
+            add_distinct(weapon_prof)
             new_player.prof_bonus = 2
             new_player.save = "Intelligence, Wisdom"
-            picked = []
-            while len(picked) < 2:
+            while prof < 2:
                 choice = input("Choose two of the following skills to be trained in Arcana, History, Insight, Investigation, Medicine, or Religion: ")
-                if choice == "Arcana" and "Arcana" not in picked:
-                    picked.append("Arcana")
+                if choice == "Arcana" and "Arcana" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Arcana")
                     new_player.skills["Arcana"] += 2
-                elif choice == "Insight" and "Insight" not in picked:
-                    picked.append("Insight")
+                    prof += 1
+                elif choice == "Insight" and "Insight" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Insight")
                     new_player.skills["Insight"] += 2
-                elif choice == "History" and "History" not in picked:
-                    picked.append("History")
+                    prof += 1
+                elif choice == "History" and "History" not in new_player.skill_prof:
+                    new_player.skill_prof.append("History")
                     new_player.skills["History"] += 2
-                elif choice == "Medicine" and "Medicine" not in picked:
-                    picked.append("Medicine")
+                    prof += 1
+                elif choice == "Medicine" and "Medicine" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Medicine")
                     new_player.skills["Medicine"] += 2
-                elif choice == "Investigation" and "Investigation" not in picked:
-                    picked.append("Investigation")
+                    prof += 1
+                elif choice == "Investigation" and "Investigation" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Investigation")
                     new_player.skills["Investigation"] += 2
-                elif choice == "Religion" and "Religion" not in picked:
-                    picked.append("Religion")
+                    prof += 1
+                elif choice == "Religion" and "Religion" not in new_player.skill_prof:
+                    new_player.skill_prof.append("Religion")
                     new_player.skills["Religion"] += 2
-                else: print("Invalid option")
+                    prof += 1
+                else: print("Invalid option or alreay proficient")
             break;
         else: print("Invalid option")
 
@@ -854,7 +935,8 @@ def print_player(player):
     print("Initiative: " + str(player.init))
     print("Skills" + str(player.skills))
     print("Proficieny Bonus: " + str(player.prof_bonus))
-    print("Proficienies: " + str(player.prof))
+    print(("Skill Proficienies: ") + str(player.skill_prof))
+    print("Weapon Proficienies: " + str(player.weapon_prof))
     print("Recommended Alignment: " + str(player.rec_alignment))
     print("Traits: " + str(player.traits))
     print("Languages: " + str(player.lang))
