@@ -1014,7 +1014,7 @@ def main():
         "ProfBonus" : new_player.prof_bonus,
         "Initiative" : new_player.init,
         "HPMax" : new_player.hp,
-        "Features and Traits" : new_player.traits,
+        "Features and Traits" : (", ").join(new_player.traits),
         "HD" : new_player.hitdice,
         "HDTotal" : new_player.hitdice_total,
         "Passive" : new_player.skills["Perception"],
@@ -1036,20 +1036,15 @@ def main():
         "SleightofHand" : new_player.skills["Sleight of Hand"],
         "Stealth " : new_player.skills["Stealth"],
         "Survival" : new_player.skills["Survival"],
-
-        "ProficienciesLang" : "Proficiencies: " + str(new_player.weapon_prof) + "\nLanguages: " + str(new_player.lang)
-
+        "ProficienciesLang" : "Proficiencies: " + str((", ").join(new_player.weapon_prof)) + "\nLanguages: " + (", ").join(new_player.lang)
     }
     """
     print("Saving Throws: " + player.save)
-    print("Skills" + str(player.skills))
     print(("Skill Proficienies: ") + str(player.skill_prof))
-    print("Weapon Proficienies: " + str(player.weapon_prof))
-    print("Languages: " + str(player.lang))
-    print("Size: " + str(player.size))
     """
     write_fillable_pdf(CHAR_SHEET_TEMPLATE_PATH, CHAR_SHEET_OUTPUT_PATH, data_dict)
-    print("Make sure to look at the pages referenced to get more specific abilities, equipment, etc. This is mostly to just draft your stats quickly!")
+    print("This program was meant to draft the basic stats and choices for your character quickly, your character may not be done quite yet!")
+    print("Make sure to look in the Player's Handbook for your character's Background, Class Features, Spells, and Equipment, most of which can be found in the Classes Section")
     print("Your character should be saved to new_character.pdf, Have fun and may your rolls be critical")
 
 
