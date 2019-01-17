@@ -1010,6 +1010,12 @@ def main():
         "INTmod" : new_player.int_mod,
         "WISmod" : new_player.wis_mod,
         "CHamod" : new_player.cha_mod,
+        "ST Strength" : new_player.str_mod,
+        "ST Dexterity" : new_player.dex_mod,
+        "ST Constitution" : new_player.con_mod,
+        "ST Intelligence" : new_player.int_mod,
+        "ST Wisdom" : new_player.wis_mod,
+        "ST Charisma" : new_player.cha_mod,
         "Speed" : new_player.speed,
         "ProfBonus" : new_player.prof_bonus,
         "Initiative" : new_player.init,
@@ -1038,13 +1044,15 @@ def main():
         "Survival" : new_player.skills["Survival"],
         "ProficienciesLang" : "Proficiencies: " + str((", ").join(new_player.weapon_prof)) + "\nLanguages: " + (", ").join(new_player.lang)
     }
-    """
-    print("Saving Throws: " + player.save)
-    print(("Skill Proficienies: ") + str(player.skill_prof))
-    """
+
     write_fillable_pdf(CHAR_SHEET_TEMPLATE_PATH, CHAR_SHEET_OUTPUT_PATH, data_dict)
+    print("")
+    print("Fill in the following checkboxes on your character sheet")
+    print("Saving Throws: " + new_player.save)
+    print("Skills: " + (", ").join(new_player.skill_prof))
+    print("")
     print("This program was meant to draft the basic stats and choices for your character quickly, your character may not be done quite yet!")
-    print("Make sure to look in the Player's Handbook for your character's Background, Class Features, Spells, and Equipment, most of which can be found in the Classes Section")
+    print("Make sure to look in the Player's Handbook for your character's Background, Class Features, Spells, and Equipment")
     print("Your character should be saved to new_character.pdf, Have fun and may your rolls be critical")
 
 
