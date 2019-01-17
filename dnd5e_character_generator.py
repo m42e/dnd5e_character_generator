@@ -959,8 +959,8 @@ def print_player(player):
 
 new_player = Player()
 
-INVOICE_TEMPLATE_PATH = 'TWC-DnD-5E-Character-Sheet-v1.6.pdf'
-INVOICE_OUTPUT_PATH = 'new_character.pdf'
+CHAR_SHEET_TEMPLATE_PATH = 'TWC-DnD-5E-Character-Sheet-v1.6.pdf'
+CHAR_SHEET_OUTPUT_PATH = 'new_character.pdf'
 
 ANNOT_KEY = '/Annots'
 ANNOT_FIELD_KEY = '/T'
@@ -1017,7 +1017,7 @@ def main():
         "Features and Traits" : new_player.traits,
         "HD" : new_player.hitdice,
         "HDTotal" : new_player.hitdice_total,
-
+        "Passive" : new_player.skills["Perception"],
         "Acrobatics" : new_player.skills["Acrobatics"],
         "Animal" : new_player.skills["Animal Handling"],
         "Arcana" : new_player.skills["Arcana"],
@@ -1048,7 +1048,7 @@ def main():
     print("Languages: " + str(player.lang))
     print("Size: " + str(player.size))
     """
-    write_fillable_pdf(INVOICE_TEMPLATE_PATH, INVOICE_OUTPUT_PATH, data_dict)
+    write_fillable_pdf(CHAR_SHEET_TEMPLATE_PATH, CHAR_SHEET_OUTPUT_PATH, data_dict)
     print("Make sure to look at the pages referenced to get more specific abilities, equipment, etc. This is mostly to just draft your stats quickly!")
     print("Your character should be saved to new_character.pdf, Have fun and may your rolls be critical")
 
