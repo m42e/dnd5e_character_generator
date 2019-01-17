@@ -1,4 +1,5 @@
 from random import randint
+import pdfrw
 
 class Player:
     def  __init__(self):
@@ -11,6 +12,8 @@ class Player:
         self.wis = None
         self.cha = None
         self.hp = 0
+        self.hitdice = None
+        self.hitdice_total = 1
         self.str_mod = None
         self.dex_mod = None
         self.con_mod = None
@@ -25,7 +28,7 @@ class Player:
         self.weapon_prof = []
         self.skill_prof = []
         self.skills = {"Acrobatics":0, "Animal Handling":0, "Arcana":0, "Athletics":0, "Deception":0, "History":0, "Insight":0, "Intimidation":0, "Investigation":0, "Medicine":0, "Nature":0, "Perception":0, "Performance":0, "Persuasion":0, "Religion":0, "Sleight of Hand":0, "Stealth":0, "Survival":0}
-        self.rec_alignment = []
+        self.rec_alignment = ""
         self.traits = []
         self.lang = []
         self.size = None
@@ -404,6 +407,7 @@ def class_menu():
         if choice == '1':
             new_player.className = "Barbarian"
             new_player.hp += randint(1,12) + new_player.con_mod
+            new_player.hitdice = "1d12+CON mod"
             weapon_prof = ["Light Armor", "Medium Armor", "Shield", "Simple Weapons", "Martial Weapons"]
             add_distinct(weapon_prof)
             new_player.prof_bonus = 2
@@ -439,6 +443,7 @@ def class_menu():
         elif choice == '2':
             new_player.className = "Bard"
             new_player.hp += randint(1,8) + new_player.con_mod
+            new_player.hitdice = "1d8+CON mod"
             weapon_prof = ["Light Armor", "Simple Weapons", "Hand Crossbow", "Longsword", "Rapier", "Shortsword"]
             add_distinct(weapon_prof)
             new_player.prof_bonus = 2
@@ -455,6 +460,7 @@ def class_menu():
         elif choice == '3':
             new_player.className = "Cleric"
             new_player.hp += randint(1,8) + new_player.con_mod
+            new_player.hitdice = "1d8+CON mod"
             weapon_prof = ["Light Armor", "Medium Armor", "Shield", "All Simple Weapons"]
             add_distinct(weapon_prof)
             new_player.prof_bonus = 2
@@ -486,6 +492,7 @@ def class_menu():
         elif choice == '4':
             new_player.className = "Druid"
             new_player.hp += randint(1,8) + new_player.con_mod
+            new_player.hitdice = "1d8+CON mod"
             weapon_prof = ["Light Armor (Non-metal)", "Medium Armor (Non-metal)", "Shield (Non-metal)", "Club", "Dagger", "Dart", "Javelin", "Mace", "Quarterstaff", "Scimtar", "Sickle", "Sling", "Spear"]
             add_distinct(weapon_prof)
             new_player.prof_bonus = 2
@@ -529,6 +536,7 @@ def class_menu():
         elif choice == '5':
             new_player.className = "Fighter"
             new_player.hp += randint(1,10) + new_player.con_mod
+            new_player.hitdice = "1d10+CON mod"
             weapon_prof = ["All Armor", "All Shields", "Simple Weapons", "Martial Weapons"]
             add_distinct(weapon_prof)
             new_player.prof_bonus = 2
@@ -572,6 +580,7 @@ def class_menu():
         elif choice == '6':
             new_player.className = "Monk"
             new_player.hp += randint(1,8) + new_player.con_mod
+            new_player.hitdice = "1d8+CON mod"
             weapon_prof = ["Simple Weapons", "Shortsword"]
             add_distinct(weapon_prof)
             new_player.prof_bonus = 2
@@ -607,6 +616,7 @@ def class_menu():
         elif choice == '7':
             new_player.className = "Paladin"
             new_player.hp += randint(1,10) + new_player.con_mod
+            new_player.hitdice = "1d10+CON mod"
             weapon_prof = ["All Armor", "All Shields", "Simple Weapons", "Martial Weapons"]
             add_distinct(weapon_prof)
             new_player.prof_bonus = 2
@@ -642,6 +652,7 @@ def class_menu():
         elif choice == '8':
             new_player.className = "Ranger"
             new_player.hp += randint(1,10) + new_player.con_mod
+            new_player.hitdice = "1d10+CON mod"
             weapon_prof = ["Light Armor", "Medium Armor", "Shield", "Simple Weapons", "Martial Weapons"]
             add_distinct(weapon_prof)
             new_player.prof_bonus = 2
@@ -685,6 +696,7 @@ def class_menu():
         elif choice == '9':
             new_player.className = "Rogue"
             new_player.hp += randint(1,8) + new_player.con_mod
+            new_player.hitdice = "1d8+CON mod"
             weapon_prof = ["Light Armor", "Simple Weapons", "Hand Crossbow", "Longsword", "Rapier", "Shortsword"]
             add_distinct(weapon_prof)
             new_player.prof_bonus = 2
@@ -740,6 +752,7 @@ def class_menu():
         elif choice == '10':
             new_player.className = "Sorcerer"
             new_player.hp += randint(1,6) + new_player.con_mod
+            new_player.hitdice = "1d6+CON mod"
             weapon_prof = ["Dagger", "Dart", "Sling", "Quarterstaff", "Light Crossbow"]
             add_distinct(weapon_prof)
             new_player.prof_bonus = 2
@@ -775,6 +788,7 @@ def class_menu():
         elif choice == '11':
             new_player.className = "Warlock"
             new_player.hp += randint(1,8) + new_player.con_mod
+            new_player.hitdice = "1d8+CON mod"
             weapon_prof = ["Light Armor", "Simple Weapon"]
             add_distinct(weapon_prof)
             new_player.prof_bonus = 2
@@ -814,6 +828,7 @@ def class_menu():
         elif choice == '12':
             new_player.className = "Wizard"
             new_player.hp += randint(1,6) + new_player.con_mod
+            new_player.hitdice = "1d6+CON mod"
             weapon_prof = ["Dagger", "Dart", "Sling", "Quarterstaff", "Light Crossbow"]
             add_distinct(weapon_prof)
             new_player.prof_bonus = 2
@@ -942,6 +957,31 @@ def print_player(player):
     print("Languages: " + str(player.lang))
     print("Size: " + str(player.size))
 
+new_player = Player()
+
+INVOICE_TEMPLATE_PATH = 'TWC-DnD-5E-Character-Sheet-v1.6.pdf'
+INVOICE_OUTPUT_PATH = 'new_character.pdf'
+
+ANNOT_KEY = '/Annots'
+ANNOT_FIELD_KEY = '/T'
+ANNOT_VAL_KEY = '/V'
+ANNOT_RECT_KEY = '/Rect'
+SUBTYPE_KEY = '/Subtype'
+WIDGET_SUBTYPE_KEY = '/Widget'
+
+def write_fillable_pdf(input_pdf_path, output_pdf_path, data_dict):
+    template_pdf = pdfrw.PdfReader(input_pdf_path)
+    annotations = template_pdf.pages[0][ANNOT_KEY]
+    for annotation in annotations:
+        if annotation[SUBTYPE_KEY] == WIDGET_SUBTYPE_KEY:
+            if annotation[ANNOT_FIELD_KEY]:
+                key = annotation[ANNOT_FIELD_KEY][1:-1]
+                if key in data_dict.keys():
+                    annotation.update(
+                        pdfrw.PdfDict(V='{}'.format(data_dict[key]))
+                    )
+    pdfrw.PdfWriter().write(output_pdf_path, template_pdf)
+
 def main():
     print("Welcome to the basic Dungeons and Dragons 5e character generator!")
     print("This program will walk your through the basic character creation process of a dnungeons and drangons 5th edition character!")
@@ -952,9 +992,66 @@ def main():
     eval_mods()
     class_menu()
     print_player(new_player)
-    print("Make sure to look at the pages referenced to get more specific abilities, equipment, etc. This is mostly to just draft your stats quickly!")
+    data_dict = {
+        "CharacterName" : new_player.name,
+        "ClassLevel" : new_player.className + "\t" + "0",
+        "Race " : new_player.race,
+        "Alignment" : new_player.rec_alignment,
+        "XP" : "0",
+        "STR" : new_player.str,
+        "DEX" : new_player.dex,
+        "CON" : new_player.con,
+        "INT" : new_player.int,
+        "WIS" : new_player.wis,
+        "CHA" : new_player.cha,
+        "STRmod" : new_player.str_mod,
+        "DEXmod " : new_player.dex_mod,
+        "CONmod" : new_player.con_mod,
+        "INTmod" : new_player.int_mod,
+        "WISmod" : new_player.wis_mod,
+        "CHamod" : new_player.cha_mod,
+        "Speed" : new_player.speed,
+        "ProfBonus" : new_player.prof_bonus,
+        "Initiative" : new_player.init,
+        "HPMax" : new_player.hp,
+        "Features and Traits" : new_player.traits,
+        "HD" : new_player.hitdice,
+        "HDTotal" : new_player.hitdice_total,
 
-new_player = Player()
+        "Acrobatics" : new_player.skills["Acrobatics"],
+        "Animal" : new_player.skills["Animal Handling"],
+        "Arcana" : new_player.skills["Arcana"],
+        "Athletics" : new_player.skills["Athletics"],
+        "Deception " : new_player.skills["Deception"],
+        "History " : new_player.skills["History"],
+        "Insight" : new_player.skills["Insight"],
+        "Intimidation" : new_player.skills["Intimidation"],
+        "Investigation " : new_player.skills["Investigation"],
+        "Medicine" : new_player.skills["Medicine"],
+        "Nature" : new_player.skills["Nature"],
+        "Perception " : new_player.skills["Perception"],
+        "Performance" : new_player.skills["Performance"],
+        "Persuasion" : new_player.skills["Persuasion"],
+        "Religion" : new_player.skills["Religion"],
+        "SleightofHand" : new_player.skills["Sleight of Hand"],
+        "Stealth " : new_player.skills["Stealth"],
+        "Survival" : new_player.skills["Survival"],
+
+        "ProficienciesLang" : "Proficiencies: " + str(new_player.weapon_prof) + "\nLanguages: " + str(new_player.lang)
+
+    }
+    """
+    print("Saving Throws: " + player.save)
+    print("Skills" + str(player.skills))
+    print(("Skill Proficienies: ") + str(player.skill_prof))
+    print("Weapon Proficienies: " + str(player.weapon_prof))
+    print("Languages: " + str(player.lang))
+    print("Size: " + str(player.size))
+    """
+    write_fillable_pdf(INVOICE_TEMPLATE_PATH, INVOICE_OUTPUT_PATH, data_dict)
+    print("Make sure to look at the pages referenced to get more specific abilities, equipment, etc. This is mostly to just draft your stats quickly!")
+    print("Your character should be saved to new_character.pdf, Have fun and may your rolls be critical")
+
 
 if __name__ == "__main__":
     main()
