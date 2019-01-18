@@ -10,7 +10,7 @@ Run the Python 3 program and follow the corresponding menu options.
 
 The necessary libraries are
 
-randint
+*randint
 *[pdfrw](https://github.com/pmaupin/pdfrw)
 
 ## Acknowledgments
