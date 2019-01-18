@@ -1,17 +1,17 @@
 # Dungeons and Dragons 5th Edition Character Generator
 
-This program allows the user to quickly go through the initial steps of character creation. Using a text based menu the user will have a editable pdf accurately documenting their race, class, ability scores, skills, languages, proficiencies, associated features. The user will still need to reference the Player's Handbook to choose Background, Class Features, Equipment, and Spells. The page numbers referenced in the program correspond to the Player's Handbook.
+This program allows the user to quickly go through the initial steps of character creation. Using a text based menu the user will have a editable pdf accurately documenting their race, class, ability scores, skills, languages, proficiencies, associated features. The user will still need to reference the Player's Handbook to choose Background, Class Features, Equipment, and Spells. The page numbers referenced in the program correspond to the Player's Handbook. Encountering an issue or chance for me to improve this project? Feel free to comment below and let me know!
 
 ## Getting Started
 
-Run the Python 3 program and follow the corresponding menu options.
+Run dnd5e_character-generator.py using Python 3 and follow the corresponding menu options.
 
 ### Prerequisites
 
-The necessary libraries are
+The necessary libraries are listed below
 
-*randint
-*[pdfrw](https://github.com/pmaupin/pdfrw)
+* randint
+* [pdfrw](https://github.com/pmaupin/pdfrw)
 
 ## Acknowledgments
 A special thanks to the following contributions
