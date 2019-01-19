@@ -112,8 +112,8 @@ def add_distinct(lst):
 
 def new_lang():
     languages = ["Dwarvish","Elvish","Giant","Gnomish","Goblin","Halfling","Orc","Abyssal","Celestial","Draconic","Deep Speech","Infernal","Primordial","Undercommon","Sylvan","Druidic"]
-    choice = input("What langauge would you like to add to your character Dwarvish, Elvish, Giant, Gnomish, Goblin, Halfling, Orc, Abyssal, Celestial, Draconic, Deep Speech, Infernal, Primordial, Undercommon, Sylvan, Druidic: ").title()
     while True:
+        choice = input("What langauge would you like to add to your character Dwarvish, Elvish, Giant, Gnomish, Goblin, Halfling, Orc, Abyssal, Celestial, Draconic, Deep Speech, Infernal, Primordial, Undercommon, Sylvan, Druidic: ").title()
         if choice in languages:
             return choice
         else:
@@ -149,14 +149,14 @@ def race_menu():
                     new_player.race = "Dwarf (Hill Dwarf)"
                     new_player.wis += 1
                     new_player.hp += 1
-                    new_player.traits += "Dwarven Toughness"
+                    new_player.traits += ["Dwarven Toughness"]
                     break;
                 elif choice == 'M':
                     new_player.race = "Dwarf (Mountain Dwarf)"
                     new_player.str += 2
                     weapon_prof = ["Light Armor", "Medium Armor"]
                     add_distinct(weapon_prof)
-                    new_player.traits += "Dwarven Armor Training"
+                    new_player.traits += ["Dwarven Armor Training"]
                     break;
                 else: print("Invalid option")
             break;
@@ -275,8 +275,8 @@ def race_menu():
             new_player.traits += ["Darkvision","Fey Ancestry","Skill Versitility"]
             new_player.rec_alignment = "Chaotic"
             new_player.lang += ["Common", "Elvish"]
-            language = new_lang()
             new_player.size = "Medium"
+            language = new_lang()
             while True:
                 if language in new_player.lang:
                     print("Your character already knows that language, please choose another")
@@ -284,24 +284,26 @@ def race_menu():
                 else:
                     new_player.lang += [language]
                     break
-            while count < 2:
+            chosen = []
+            while len(chosen) < 2:
+                print("Along with charisma, you get two other ability score increase (+1 each)")
                 choice = input("Would you like to increase (S)trength, (D)exterity, (C)onstitution, (I)ntelligence, or (W)isdom: ").upper()
-                if choice == 'S':
+                if choice == 'S' and choice not in chosen:
                     new_player.str += 1
-                    count += 1
-                elif choice == 'D':     
+                    chosen.append(choice)
+                elif choice == 'D' and choice not in chosen:     
                     new_player.dex += 1
-                    count += 1
-                elif choice == 'C': 
+                    chosen.append(choice)
+                elif choice == 'C' and choice not in chosen: 
                     new_player.con += 1
-                    count += 1
-                elif choice == 'I': 
+                    chosen.append(choice)
+                elif choice == 'I' and choice not in chosen: 
                     new_player.int += 1
-                    count += 1
-                elif choice == 'W': 
+                    chosen.append(choice)
+                elif choice == 'W' and choice not in chosen: 
                     new_player.wis += 1
-                    count += 1
-                else: print("Invalid option")
+                    chosen.append(choice)
+                else: print("Invalid option or already picked")
             break;
         elif choice == '8':
             new_player.speed = 30
@@ -337,8 +339,6 @@ def choose_skills(skills_list, num_skills):
         else: print("Invalid option or already proficient")
 
 def class_menu():
-    new_player.skill_prof = []
-
     if new_player.race == "Half-Elf":
         while(True):
             print(new_player.skills)
@@ -595,11 +595,11 @@ def print_player(player):
     print("Initiative: " + str(player.init))
     print("Skills" + str(player.skills))
     print("Proficieny Bonus: " + str(player.prof_bonus))
-    print(("Skill Proficienies: ") + str(player.skill_prof))
-    print("Weapon Proficienies: " + str(player.weapon_prof))
-    print("Recommended Alignment: " + str(player.rec_alignment))
-    print("Traits: " + str(player.traits))
-    print("Languages: " + str(player.lang))
+    print("Skill Proficienies: " + (", ").join(player.skill_prof))
+    print("Weapon Proficienies: " + (", ").join(player.weapon_prof))
+    print("Recommended Alignment: " + player.rec_alignment)
+    print("Traits: " + (", ").join(player.traits))
+    print("Languages: " + (", ").join(player.lang))
     print("Size: " + str(player.size))
 
 new_player = Player()
@@ -687,7 +687,7 @@ def main():
         "SleightofHand" : new_player.skills["Sleight Of Hand"],
         "Stealth " : new_player.skills["Stealth"],
         "Survival" : new_player.skills["Survival"],
-        "ProficienciesLang" : "Proficiencies: " + str((", ").join(new_player.weapon_prof)) + "\nLanguages: " + (", ").join(new_player.lang)
+        "ProficienciesLang" : "Proficiencies: " + (", ").join(new_player.weapon_prof) + "\nLanguages: " + (", ").join(new_player.lang)
     }
 
     write_fillable_pdf(CHAR_SHEET_TEMPLATE_PATH, CHAR_SHEET_OUTPUT_PATH, data_dict)
