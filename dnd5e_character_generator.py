@@ -111,57 +111,13 @@ def add_distinct(lst):
             new_player.weapon_prof.append(word)
 
 def new_lang():
+    languages = ["Dwarvish","Elvish","Giant","Gnomish","Goblin","Halfling","Orc","Abyssal","Celestial","Draconic","Deep Speech","Infernal","Primordial","Undercommon","Sylvan","Druidic"]
+    choice = input("What langauge would you like to add to your character Dwarvish, Elvish, Giant, Gnomish, Goblin, Halfling, Orc, Abyssal, Celestial, Draconic, Deep Speech, Infernal, Primordial, Undercommon, Sylvan, Druidic: ").title()
     while True:
-        choice = input("What langauge would you like to add to your character Dwarvish, Elvish, Giant, Gnomish, Goblin, Halfling, Orc, Abyssal, Celestial, Draconic, Deep Speech, Infernal, Primordial, Undercommon, Sylvan, Druidic: ").upper()
-        if choice == 'DWARVISH':
-            return "Dwarvish"
-            break;
-        elif choice == 'ELVISH':
-            return "Elvish"
-            break;
-        elif choice == 'GIANT': 
-            return "Giant"
-            break;
-        elif choice == 'GNOMISH': 
-            return "Gnomish"
-            break;
-        elif choice == 'GOBLIN': 
-            return "Goblin"
-            break;
-        elif choice == 'HALFLING': 
-            return "Halfling"
-            break;
-        elif choice == 'ORC': 
-            return "Orc"
-            break;
-        elif choice == 'ABYSSAL': 
-            return "Abyssal"
-            break;
-        elif choice == 'CELESTIAL': 
-            return "Celestial"
-            break;
-        elif choice == 'DRACONIC': 
-            return "Draconic"
-            break;
-        elif choice == 'DEEP SPEECH': 
-            return "Deep Speech"
-            break;
-        elif choice == 'INFERNAL': 
-            return "Infernal"
-            break;
-        elif choice == 'PRIMORDIAL': 
-            return "Primordial"
-            break;
-        elif choice == 'SYLVAN': 
-            return "Sylvan"
-            break;
-        elif choice == 'UNDERCOMMON': 
-            return "Undercommon"
-            break;
-        elif choice == 'DRUIDIC': 
-            return "Druidic"
-            break;
-        else: print("Invalid option")
+        if choice in languages:
+            return choice
+        else:
+            print("Invalid option")
 
 def race_menu():
     print("")
