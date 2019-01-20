@@ -47,15 +47,16 @@ def random_abil():
     n6 = best_of_4d6()
     abil = [n1, n2, n3, n4, n5, n6]
     abil.sort(reverse = True)
-    print("You rolled the following scores: " + str(abil))
+    print("\nYou rolled the following scores: " + str(abil))
     return abil
 
 def predef_abil():
     abil = [15, 14, 13, 12, 10, 8]
-    print("You have the following scores to place as you please: " + str(abil))
+    print("\nYou have the following scores to place as you please: " + str(abil))
     return abil
 
 def custom_abil():
+    print("")
     new_player.str = int(input("What is your strength: "))
     new_player.dex = int(input("What is your dexterity: "))
     new_player.con = int(input("What is your constitution: "))
@@ -64,32 +65,31 @@ def custom_abil():
     new_player.cha = int(input("What is your charisma: "))
 
 def abil_input(abil):
-    new_player.skill_prof = []
-    while(len(new_player.skill_prof) < 6):
-        choice = input("Will " + str(abil[len(new_player.skill_prof)]) + " be your (S)trength, (D)exterity, (C)onstitution, (I)ntelligence, (W)isdom, or (Ch)arisma: ").upper()
-        if choice == 'S' and choice not in new_player.skill_prof: 
-            new_player.str = abil[len(new_player.skill_prof)]
-            new_player.skill_prof.append('S')
-        elif choice == 'D' and choice not in new_player.skill_prof:     
-            new_player.dex = abil[len(new_player.skill_prof)]
-            new_player.skill_prof.append('D')
-        elif choice == 'C' and choice not in new_player.skill_prof: 
-            new_player.con = abil[len(new_player.skill_prof)]
-            new_player.skill_prof.append('C')
-        elif choice == 'I' and choice not in new_player.skill_prof: 
-            new_player.int = abil[len(new_player.skill_prof)]
-            new_player.skill_prof.append('I')
-        elif choice == 'W' and choice not in new_player.skill_prof: 
-            new_player.wis = abil[len(new_player.skill_prof)]
-            new_player.skill_prof.append('W')
-        elif choice == 'CH' and choice not in new_player.skill_prof: 
-            new_player.cha = abil[len(new_player.skill_prof)]
-            new_player.skill_prof.append('CH')
+    chosen = []
+    while(len(chosen) < 6):
+        choice = input("Will " + str(abil[len(chosen)]) + " be your (S)trength, (D)exterity, (C)onstitution, (I)ntelligence, (W)isdom, or (Ch)arisma: ").upper()
+        if choice == 'S' and choice not in chosen: 
+            new_player.str = abil[len(chosen)]
+            chosen.append('S')
+        elif choice == 'D' and choice not in chosen:     
+            new_player.dex = abil[len(chosen)]
+            chosen.append('D')
+        elif choice == 'C' and choice not in chosen: 
+            new_player.con = abil[len(chosen)]
+            chosen.append('C')
+        elif choice == 'I' and choice not in chosen: 
+            new_player.int = abil[len(chosen)]
+            chosen.append('I')
+        elif choice == 'W' and choice not in chosen: 
+            new_player.wis = abil[len(chosen)]
+            chosen.append('W')
+        elif choice == 'CH' and choice not in chosen: 
+            new_player.cha = abil[len(chosen)]
+            chosen.append('CH')
         else: print("Invalid option")
 
 def abil_menu():
-    print("")
-    print("A brief explanation of ability scores in terms of a tomato\nStrength is your ability to crush a tomato\nDexterity is the ability to dodge a tomato thrown at you\nConstitution is the ability to eat a rotten tomato and not get sick\nIntelligence is knowing a tomato is a fruit\nWisdom is knowing not to put a tomato in a fruit salad\nCharisma is being able to sell a tomato based fruit salad\nFor more information see Pg 14\n")
+    print("\nA brief explanation of ability scores in terms of a tomato\nStrength is your ability to crush a tomato\nDexterity is the ability to dodge a tomato thrown at you\nConstitution is the ability to eat a rotten tomato and not get sick\nIntelligence is knowing a tomato is a fruit\nWisdom is knowing not to put a tomato in a fruit salad\nCharisma is being able to sell a tomato based fruit salad\nFor more information see Pg 14\n")
     while True:
         choice = input("How would you like to determine your ability scores? (R)andom, (P)redetermined, (C)ustom, or (D)escription: ").upper()
         if choice == 'R':
@@ -120,8 +120,7 @@ def new_lang():
             print("Invalid option")
 
 def race_menu():
-    print("")
-    print("Races:")
+    print("\nRaces:")
     print("1) Dwarf (pg 18) // Constitution +2")
     print("2) Elf (pg 21) // Dexterity +2")
     print("3) Halfling (pg 26) // Dexterity +2")
@@ -329,7 +328,7 @@ def race_menu():
 
 def choose_skills(skills_list, num_skills):
     skills_chosen = 0
-    print("Choose " + str(num_skills) + " skills to be trained in from the following list " + (", ").join(skills_list) + " by typing the full name of the skill then hitting [ENTER]")
+    print("\nChoose " + str(num_skills) + " skills to be trained in from the following list " + (", ").join(skills_list) + " by typing the full name of the skill then hitting [ENTER]")
     while skills_chosen < num_skills:
         choice = input("Skill " + str(skills_chosen + 1) + ": ").title()
         if choice in skills_list and choice not in new_player.skill_prof:
@@ -352,8 +351,7 @@ def class_menu():
         new_player.skill_prof.append("Perception")
         new_player.skills["Perception"] += 2
 
-    print("")
-    print("Classes: ")
+    print("\nClasses: ")
     print("1) Barbarian (pg 46) A fierce warrior of primitive background who can enter a battle rage")
     print("2) Bard (pg 49) An inspiring magician whose power echoes the music of creation")
     print("3) Cleric (pg 56) A priestly champion who wields divine magic in service of a higher power")
@@ -390,8 +388,9 @@ def class_menu():
             new_player.prof_bonus = 2
             new_player.save = "Dexterity, Charisma"
             while prof < 3:
-                print(new_player.skills)
-                choice = input("Choose three skills to be trained in: ")
+                for skill in new_player.skills:
+                    print (skill, end=", ")
+                choice = input("\nChoose three of the above skills to be trained in: ").title()
                 if choice in new_player.skills and choice not in new_player.skill_prof:
                     new_player.skill_prof.append(choice)
                     new_player.skills[choice] += 2
@@ -573,7 +572,7 @@ def eval_mods():
     new_player.skills["Survival"] = new_player.wis_mod
     
 def print_player(player):
-    print("")
+    print("\nDND 5E CHARACTER PRINT OUT")
     print("Name: " + player.name)
     print("Race: " + player.race)
     print("Class: " + player.className)
@@ -628,10 +627,9 @@ def write_fillable_pdf(input_pdf_path, output_pdf_path, data_dict):
     pdfrw.PdfWriter().write(output_pdf_path, template_pdf)
 
 def main():
-    print("Welcome to the basic Dungeons and Dragons 5e character generator!")
+    print("\nWelcome to the basic Dungeons and Dragons 5e character generator!")
     print("This program will walk your through the basic character creation process of a dnungeons and drangons 5th edition character!")
-    new_player.name = input("What is your new character's name: ")
-    print(new_player.name)
+    new_player.name = input("\nWhat is your new character's name: ")
     abil_menu()
     race_menu()
     eval_mods()
@@ -691,14 +689,12 @@ def main():
     }
 
     write_fillable_pdf(CHAR_SHEET_TEMPLATE_PATH, CHAR_SHEET_OUTPUT_PATH, data_dict)
-    print("")
-    print("Fill in the following checkboxes on your character sheet")
+    print("\nFill in the following checkboxes on your character sheet")
     print("Saving Throws: " + new_player.save)
     print("Skills: " + (", ").join(new_player.skill_prof))
-    print("")
-    print("This program was meant to draft the basic stats and choices for your character quickly, your character may not be done quite yet!")
+    print("\nThis program was meant to draft the basic stats and choices for your character quickly, your character may not be done quite yet!")
     print("Make sure to look in the Player's Handbook for your character's Background, Class Features, Spells, and Equipment")
-    print("Your character should be saved to new_character.pdf, Have fun and may your rolls be critical")
+    print("Your character should be saved to new_character.pdf, Have fun and may your rolls be critical!\n")
 
 
 if __name__ == "__main__":
